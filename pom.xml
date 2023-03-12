@@ -20,6 +20,8 @@
 		<surefire.version>3.0.0-M9</surefire.version>
 		<junit.platform.suite>1.9.1</junit.platform.suite>
 		<cucumber.version>7.7.0</cucumber.version>
+		<license-maven-plugin.version>4.2.rc3</license-maven-plugin.version>
+		<license.git.copyrightYears>2023</license.git.copyrightYears>
 	</properties>
 
 	<dependencies>
@@ -140,6 +142,56 @@
 							failures -->
 							<checkBuildResult>true</checkBuildResult>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>com.mycila</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>${license-maven-plugin.version}</version>
+				<configuration>
+					<licenseSets>
+						<licenseSet>
+							<inlineHeader>
+								<![CDATA[
+Copyright ${license.git.copyrightYears} vijane.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+]]>
+							</inlineHeader>
+							<includes>
+								<include>**/*.java</include>
+							</includes>
+							<excludes>
+								<exclude>.idea/**</exclude>
+								<exclude>.mvn/**</exclude>
+								<exclude>**/target/**</exclude>
+								<exclude>**/resources/**</exclude>
+							</excludes>
+						</licenseSet>
+					</licenseSets>
+					<strictCheck>true</strictCheck>
+					<mapping>
+						<java>SLASHSTAR_STYLE</java>
+					</mapping>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
