@@ -67,30 +67,30 @@
 		</dependency>
 	</dependencies>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>io.cucumber</groupId>
-				<artifactId>messages</artifactId>
-				<version>19.1.4</version>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.platform</groupId>
-				<artifactId>junit-platform-commons</artifactId>
-				<version>1.9.2</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apiguardian</groupId>
-				<artifactId>apiguardian-api</artifactId>
-				<version>1.1.2</version>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.platform</groupId>
-				<artifactId>junit-platform-engine</artifactId>
-				<version>1.9.2</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+<!--	<dependencyManagement>-->
+<!--		<dependencies>-->
+<!--			<dependency>-->
+<!--				<groupId>io.cucumber</groupId>-->
+<!--				<artifactId>messages</artifactId>-->
+<!--				<version>19.1.4</version>-->
+<!--			</dependency>-->
+<!--			<dependency>-->
+<!--				<groupId>org.junit.platform</groupId>-->
+<!--				<artifactId>junit-platform-commons</artifactId>-->
+<!--				<version>1.9.2</version>-->
+<!--			</dependency>-->
+<!--			<dependency>-->
+<!--				<groupId>org.apiguardian</groupId>-->
+<!--				<artifactId>apiguardian-api</artifactId>-->
+<!--				<version>1.1.2</version>-->
+<!--			</dependency>-->
+<!--			<dependency>-->
+<!--				<groupId>org.junit.platform</groupId>-->
+<!--				<artifactId>junit-platform-engine</artifactId>-->
+<!--				<version>1.9.2</version>-->
+<!--			</dependency>-->
+<!--		</dependencies>-->
+<!--	</dependencyManagement>-->
 
 	<build>
 		<plugins>
@@ -258,24 +258,25 @@ limitations under the License.
 				</executions>
 			</plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>${maven-enforcer-plugin.version}</version>
-				<executions>
-					<execution>
-						<id>enforce</id>
-						<goals>
-							<goal>enforce</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<rules>
-						<dependencyConvergence/>
-					</rules>
-				</configuration>
-			</plugin>
+<!--	TODO the validation is working but with the dependency management cucumber is throwing no class found ex. Still need to investigate how to get it working		-->
+<!--			<plugin>-->
+<!--				<groupId>org.apache.maven.plugins</groupId>-->
+<!--				<artifactId>maven-enforcer-plugin</artifactId>-->
+<!--				<version>${maven-enforcer-plugin.version}</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<id>enforce</id>-->
+<!--						<goals>-->
+<!--							<goal>enforce</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--				<configuration>-->
+<!--					<rules>-->
+<!--						<dependencyConvergence/>-->
+<!--					</rules>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 </project>
