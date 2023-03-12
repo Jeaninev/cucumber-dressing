@@ -38,7 +38,7 @@ public class DataCollection<T extends DataElement>
     implements Iterable<T>, Supplier<T>
 {
 
-    private List<T> elements;
+    private final List<T> elements;
 
     public static <U extends DataElement> DataCollection<U> create( DataTable dataTable, Class<U> clazz )
     {
@@ -78,7 +78,6 @@ public class DataCollection<T extends DataElement>
                     .forEach( e -> {
                         String string = Optional
                             .ofNullable( e.getValue() )
-                            .map( s -> s.toString() )
                             .orElse( "" );
                         preparedSetters
                             .get( e.getKey() )
@@ -96,11 +95,11 @@ public class DataCollection<T extends DataElement>
                 element
                     .getClass()
                     .getDeclaredFields() )
-            .filter( f -> f.isAnnotationPresent( DataElementTransformer.class ) )
-            .collect( HashMap::new, ( m, f ) -> {
-                final DataElementTransformer annotation = f.getAnnotation( DataElementTransformer.class );
+            .filter( field -> field.isAnnotationPresent( DataElementTransformer.class ) )
+            .collect( HashMap::new, ( collector, field ) -> {
+                final DataElementTransformer annotation = field.getAnnotation( DataElementTransformer.class );
 
-                String name = f.getName();
+                String name = field.getName();
                 if ( !annotation
                     .value()
                     .isBlank() )
@@ -114,20 +113,20 @@ public class DataCollection<T extends DataElement>
                     {
                         if ( annotation.mandatory() )
                         {
-                            throw new DataTableException( "No value for column='" + f.getName() + "'" );
+                            throw new DataTableException( "No value for column='" + field.getName() + "'" );
                         }
 
                         if ( annotation
                             .defaultValue()
-                            .isBlank() && Number.class.isAssignableFrom( f.getType() ) )
+                            .isBlank() && Number.class.isAssignableFrom( field.getType() ) )
                         {
-                            throw new DataTableException( "No default value set for column='" + f.getName() + "'" );
+                            throw new DataTableException( "No default value set for column='" + field.getName() + "'" );
                         }
 
                         arg = annotation.defaultValue();
                     }
 
-                    f.setAccessible( true );
+                    field.setAccessible( true );
 
                     try
                     {
@@ -157,7 +156,7 @@ public class DataCollection<T extends DataElement>
                                     .findSpecial(
                                         annotation.converter(),
                                         method.getName(),
-                                        MethodType.methodType( f.getType(), String.class ),
+                                        MethodType.methodType( field.getType(), String.class ),
                                         annotation.converter() )
                                     .bindTo( proxy )
                                     .invokeWithArguments( targ );
@@ -171,7 +170,7 @@ public class DataCollection<T extends DataElement>
 
                                 Object result = handler.invoke( newProxyInstance, method, new Object[] { arg } );
 
-                                f.set( element, result );
+                                field.set( element, result );
                             }
                             else
                             {
@@ -198,21 +197,21 @@ public class DataCollection<T extends DataElement>
                                     result = method.invoke( newInstance, arg );
                                 }
 
-                                f.set( element, result );
+                                field.set( element, result );
                             }
                         }
                         else
                         {
 
-                            Class<?> resultType = f.getType();
+                            Class<?> resultType = field.getType();
 
                             Object result = resultType
                                 .getConstructor( String.class )
                                 .newInstance( arg );
 
-                            f.set( element, result );
+                            field.set( element, result );
                         }
-                        return f;
+                        return field;
                     }
                     catch ( Throwable e1 )
                     {
@@ -220,7 +219,7 @@ public class DataCollection<T extends DataElement>
                     }
                 };
 
-                m.put( name, fn );
+                collector.put( name, fn );
             }, HashMap::putAll );
     }
 
@@ -228,7 +227,7 @@ public class DataCollection<T extends DataElement>
     {
         for ( String header : headers )
         {
-            if ( header.isEmpty() || header == " " )
+            if ( header.isEmpty() || header.equals(" "))
             {
                 throw new RuntimeException( "Header contains empty column names" );
             }
