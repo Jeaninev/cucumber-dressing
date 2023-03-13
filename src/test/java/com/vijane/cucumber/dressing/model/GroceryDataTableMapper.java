@@ -15,30 +15,33 @@
  */
 package com.vijane.cucumber.dressing.model;
 
-import com.vijane.cucumber.dressing.DataElement;
-import com.vijane.cucumber.dressing.DataElementTransformer;
-
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
-public class GroceryDataTableMapper implements DataElement {
+import com.vijane.cucumber.dressing.DataElement;
+import com.vijane.cucumber.dressing.DataElementTransformer;
+
+public class GroceryDataTableMapper
+    implements DataElement
+{
 
     @DataElementTransformer
     private String name;
 
-    @DataElementTransformer(value = "amount", converter = BigDecimal.class)
+    @DataElementTransformer
     private BigDecimal amount;
 
-    @DataElementTransformer(value = "price", converter = BigDecimal.class)
+    @DataElementTransformer( defaultValue = "0.0" )
     private BigDecimal price;
 
-    @DataElementTransformer(value = "expirationDate", converter = DataElement.class, method = "getZonedDateTimeFromString(java.lang.String)", mandatory = false)
+    @DataElementTransformer( value = "expirationDate", converter = DataElement.class, method = "getZonedDateTimeFromString(java.lang.String)", mandatory = false )
     private ZonedDateTime expirationDate;
 
-
-    public static class Builder {
-        public Product from(GroceryDataTableMapper mapper) {
-            return new Product(mapper.name, mapper.amount, mapper.price, mapper.expirationDate);
+    public static class Builder
+    {
+        public Product from( GroceryDataTableMapper mapper )
+        {
+            return new Product( mapper.name, mapper.amount, mapper.price, mapper.expirationDate );
         }
     }
 
