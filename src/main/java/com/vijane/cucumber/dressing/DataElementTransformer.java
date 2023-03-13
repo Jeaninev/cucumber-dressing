@@ -18,6 +18,7 @@ package com.vijane.cucumber.dressing;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.TYPE;
 
+import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
@@ -72,19 +73,26 @@ import io.cucumber.datatable.DataTable;
  *
  * @see DataTable
  */
+@Documented
 @Retention( RetentionPolicy.RUNTIME )
 @Target( { TYPE, FIELD } )
 public @interface DataElementTransformer
 {
+    /** name of the {@code DataTable} column, when the field name differs */
     String value() default "";
 
+    /** type of the field to convert the {@code DataTable} field to */
     Class<?> converter() default String.class;
 
+    /** method in the converter to use. Mind the method signature! */
     String method() default "";
 
+    /** by default all fields in a {@code DataTable} are mandatory, this parameter can be set to make it optional */
     boolean mandatory() default true;
 
+    /** provide a default value for the field */
     String defaultValue() default "";
 
+    /** this parameter is used to split the array fields, by default it is comma separated */
     String splitter() default "\\s*,\\s*";
 }
