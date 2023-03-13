@@ -9,16 +9,16 @@
 <dependency>
     <groupId>com.vijane.cucumber</groupId>
     <artifactId>cucumber-dressing</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 ### Install with Gradle
 ```groovy
-implementation 'com.vijane.cucumber:cucumber-dressing:0.0.1-SNAPSHOT'
+implementation 'com.vijane.cucumber:cucumber-dressing:1.0.0'
 ```
 ### Install with Gradle Kotlin DSL
 ```kotlin
-implementation("com.vijane.cucumber:cucumber-dressing:0.0.1-SNAPSHOT")
+implementation("com.vijane.cucumber:cucumber-dressing:1.0.0")
 ```
 
 ## Table of contents
