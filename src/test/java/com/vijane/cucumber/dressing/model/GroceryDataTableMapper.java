@@ -26,7 +26,7 @@ public class GroceryDataTableMapper implements DataElement {
     @DataElementTransformer
     private String name;
 
-    @DataElementTransformer(value = "amount", converter = BigDecimal.class, mandatory = false, defaultValue = "0.0")
+    @DataElementTransformer(value = "amount", converter = BigDecimal.class)
     private BigDecimal amount;
 
     @DataElementTransformer(value = "price", converter = BigDecimal.class)
@@ -41,6 +41,5 @@ public class GroceryDataTableMapper implements DataElement {
             return new Product(mapper.name, mapper.amount, mapper.price, mapper.expirationDate);
         }
     }
-
 
 }
