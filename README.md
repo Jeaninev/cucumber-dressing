@@ -3,6 +3,8 @@
 
 # Cucumber Dressing 🥒✨
 
+Simple Java helper library to use in combination with data tables in cucumber stepdefs.
+
 # Install library with:
 ### Install with Maven
 ```xml
