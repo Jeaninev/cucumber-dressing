@@ -18,8 +18,11 @@
 		<skipIntegrationTests>${skipTests}</skipIntegrationTests>
 
 		<surefire.version>3.0.0-M9</surefire.version>
-		<junit.platform.suite>1.9.1</junit.platform.suite>
 		<cucumber.version>7.11.1</cucumber.version>
+		<cucumber-messages.version>21.0.1</cucumber-messages.version>
+		<junit.platform.suite>1.9.2</junit.platform.suite>
+		<junit-jupiter-engine.version>5.9.2</junit-jupiter-engine.version>
+		<java-hamcrest.version>2.0.0.0</java-hamcrest.version>
 		<license-maven-plugin.version>4.2.rc3</license-maven-plugin.version>
 		<maven-enforcer-plugin.version>3.2.1</maven-enforcer-plugin.version>
 		<maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
@@ -34,16 +37,18 @@
 			<version>${cucumber.version}</version>
 		</dependency>
 
+		<!--	test dependencies 	-->
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit</artifactId>
 			<version>${cucumber.version}</version>
+			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit-platform-engine</artifactId>
 			<version>${cucumber.version}</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -52,45 +57,30 @@
 			<version>${junit.platform.suite}</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.7.2</version>
+			<version>${junit-jupiter-engine.version}</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>java-hamcrest</artifactId>
-			<version>2.0.0.0</version>
+			<version>${java-hamcrest.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
-<!--	<dependencyManagement>-->
-<!--		<dependencies>-->
-<!--			<dependency>-->
-<!--				<groupId>io.cucumber</groupId>-->
-<!--				<artifactId>messages</artifactId>-->
-<!--				<version>19.1.4</version>-->
-<!--			</dependency>-->
-<!--			<dependency>-->
-<!--				<groupId>org.junit.platform</groupId>-->
-<!--				<artifactId>junit-platform-commons</artifactId>-->
-<!--				<version>1.9.2</version>-->
-<!--			</dependency>-->
-<!--			<dependency>-->
-<!--				<groupId>org.apiguardian</groupId>-->
-<!--				<artifactId>apiguardian-api</artifactId>-->
-<!--				<version>1.1.2</version>-->
-<!--			</dependency>-->
-<!--			<dependency>-->
-<!--				<groupId>org.junit.platform</groupId>-->
-<!--				<artifactId>junit-platform-engine</artifactId>-->
-<!--				<version>1.9.2</version>-->
-<!--			</dependency>-->
-<!--		</dependencies>-->
-<!--	</dependencyManagement>-->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.cucumber</groupId>
+				<artifactId>messages</artifactId>
+				<version>${cucumber-messages.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
@@ -258,25 +248,24 @@ limitations under the License.
 				</executions>
 			</plugin>
 
-<!--	TODO the validation is working but with the dependency management cucumber is throwing no class found ex. Still need to investigate how to get it working		-->
-<!--			<plugin>-->
-<!--				<groupId>org.apache.maven.plugins</groupId>-->
-<!--				<artifactId>maven-enforcer-plugin</artifactId>-->
-<!--				<version>${maven-enforcer-plugin.version}</version>-->
-<!--				<executions>-->
-<!--					<execution>-->
-<!--						<id>enforce</id>-->
-<!--						<goals>-->
-<!--							<goal>enforce</goal>-->
-<!--						</goals>-->
-<!--					</execution>-->
-<!--				</executions>-->
-<!--				<configuration>-->
-<!--					<rules>-->
-<!--						<dependencyConvergence/>-->
-<!--					</rules>-->
-<!--				</configuration>-->
-<!--			</plugin>-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>${maven-enforcer-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>enforce</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<rules>
+						<dependencyConvergence/>
+					</rules>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>
