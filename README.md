@@ -100,7 +100,7 @@ public class GroceryStepDefs {
 
     @And("I have the following grocery list")
     public void iHaveTheFollowingGroceryList(DataTable dataTable) {
-        List<Product> products = new DataCollection<>(dataTable, GroceryDataTableMapper.class).stream()
+        List<Product> products = DataCollection.create(dataTable, GroceryDataTableMapper.class).stream()
                 .map(row -> new GroceryDataTableMapper.Builder().from(row))
                 .collect(Collectors.toList());
     }
