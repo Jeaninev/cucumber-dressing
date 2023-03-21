@@ -1,9 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.vi-jane.cucumber</groupId>
 	<artifactId>cucumber-dressing</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>Cucumber Dressing</name>
 	<description>Cucumber Dressing for DataTables in scenario's</description>
 	<url>https://github.com/Jeaninev/cucumber-dressing</url>
@@ -20,7 +22,7 @@
 		<url>https://github.com/Jeaninev/cucumber-dressing</url>
 		<connection>scm:git:git@github.com:Jeaninev/cucumber-dressing.git</connection>
 		<developerConnection>scm:git:git@github.com:Jeaninev/cucumber-dressing.git</developerConnection>
-		<tag>v1.0.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<distributionManagement>
@@ -303,7 +305,7 @@ limitations under the License.
 				</executions>
 				<configuration>
 					<rules>
-						<dependencyConvergence />
+						<dependencyConvergence/>
 					</rules>
 				</configuration>
 			</plugin>
