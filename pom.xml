@@ -19,9 +19,9 @@
 	</licenses>
 
 	<scm>
-		<url>https://github.com/Jeaninev/cucumber-dressing</url>
-		<connection>scm:git:git@github.com:Jeaninev/cucumber-dressing.git</connection>
-		<developerConnection>scm:git:git@github.com:Jeaninev/cucumber-dressing.git</developerConnection>
+		<connection>scm:git:${project.scm.url}</connection>
+		<developerConnection>scm:git:${project.scm.url}</developerConnection>
+		<url>git@github.com:Jeaninev/cucumber-dressing.git</url>
 		<tag>HEAD</tag>
 	</scm>
 
@@ -216,7 +216,7 @@
 						<licenseSet>
 							<inlineHeader>
 								<![CDATA[
-Copyright ${license.git.copyrightYears} vijane.
+Copyright ${license.git.copyrightYears} vi-jane.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -316,6 +316,7 @@ limitations under the License.
 				<version>${maven-release-plugin.version}</version>
 				<configuration>
 					<arguments>maven.test.skip=true</arguments>
+					<scmCommentPrefix>[ci skip]</scmCommentPrefix>
 					<tagNameFormat>v@{project.version}</tagNameFormat>
 				</configuration>
 			</plugin>
