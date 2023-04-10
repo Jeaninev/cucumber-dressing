@@ -1,4 +1,5 @@
 [![Actions Status](https://github.com/Jeaninev/cucumber-dressing/workflows/Build/badge.svg)](https://github.com/Jeaninev/cucumber-dressing/actions)
+[![release version](https://github.com/Jeaninev/cucumber-dressing/actions/workflows/release.yaml/badge.svg)](https://github.com/Jeaninev/cucumber-dressing/actions/workflows/release.yaml)
 [![Apache2 license](https://img.shields.io/badge/license-Aache2.0-blue.svg)](https://github.com/Jeaninev/cucumber-dressing/blob/main/LICENSE)
 
 # Cucumber Dressing 🥒✨
