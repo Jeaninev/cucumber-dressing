@@ -216,7 +216,7 @@
 						<licenseSet>
 							<inlineHeader>
 								<![CDATA[
-Copyright ${license.git.copyrightYears} vi-jane.
+Copyright ${license.git.copyrightYears} vijane.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
