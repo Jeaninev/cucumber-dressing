@@ -3,7 +3,7 @@
 	<groupId>com.vi-jane.cucumber</groupId>
 	<artifactId>cucumber-dressing</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>Cucumber Dressing</name>
 	<description>Cucumber Dressing for DataTables in scenario's</description>
 	<url>https://github.com/Jeaninev/cucumber-dressing</url>
@@ -20,7 +20,7 @@
 		<connection>scm:git:${project.scm.url}</connection>
 		<developerConnection>scm:git:${project.scm.url}</developerConnection>
 		<url>git@github.com:Jeaninev/cucumber-dressing.git</url>
-		<tag>v1.0.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<distributionManagement>
