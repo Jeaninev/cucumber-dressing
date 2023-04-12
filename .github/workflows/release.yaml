@@ -16,7 +16,7 @@ jobs:
       - name: Build and Test
         uses: qcastel/github-actions-maven-cmd@master
         with:
-          maven-args: "clean install -Possrh -Ddockerfile.skip -DdockerCompose.skip -Djib.skip"
+          maven-args: "clean install -Ddockerfile.skip -DdockerCompose.skip -Djib.skip"
 
       - name: Release
         uses: qcastel/github-actions-maven-release@v1.12.31
@@ -30,7 +30,7 @@ jobs:
           docker-registry-username: qcastel
           docker-registry-password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
           
-          maven-args: "-Dmaven.javadoc.skip=true -DskipTests -DskipITs -Ddockerfile.skip -DdockerCompose.skip -Dmaven.deploy.skip=true"
+          maven-args: "-Possrh -Dmaven.javadoc.skip=true -DskipTests -DskipITs -Ddockerfile.skip -DdockerCompose.skip -Dmaven.deploy.skip=true"
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           maven-servers: '[{"id": "ossrh", "username": "Jeaninev", "password": "${{ secrets.OSSRH_PASSWORD }}"}]'
           release-branch-name: main
