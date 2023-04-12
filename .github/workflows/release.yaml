@@ -1,9 +1,11 @@
 name: release version
 
+# Only trigger, when the build workflow succeeded
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Build"]
+    types:
+      - completed
 
 jobs:
   build:
@@ -11,13 +13,6 @@ jobs:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
 
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Build and Test
-        uses: qcastel/github-actions-maven-cmd@master
-        with:
-          maven-args: "clean install -Ddockerfile.skip -DdockerCompose.skip -Djib.skip"
-
       - name: Release
         uses: qcastel/github-actions-maven-release@v1.12.31
         env:
