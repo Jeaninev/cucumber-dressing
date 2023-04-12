@@ -32,7 +32,7 @@ jobs:
           
           maven-args: "-Possrh -Dmaven.javadoc.skip=true -DskipTests -DskipITs -Ddockerfile.skip -DdockerCompose.skip -Dmaven.deploy.skip=true"
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          maven-servers: '[{"id": "ossrh", "username": "Jeaninev", "password": "${{ secrets.OSSRH_PASSWORD }}"},{"id": "gpg.keyname", "gpg.keyname": "A9666695CFBA4686"}]'
+          maven-servers: '[{"id": "ossrh", "username": "Jeaninev", "password": "${{ secrets.OSSRH_PASSWORD }}"}]'
           release-branch-name: main
           
           gpg-enabled: true
