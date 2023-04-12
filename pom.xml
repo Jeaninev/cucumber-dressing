@@ -356,8 +356,6 @@ limitations under the License.
 						<version>${maven-gpg-plugin.version}</version>
 						<configuration>
 							<executable>gpg</executable>
-							<keyname>${gpg.keyname}</keyname>
-							<passphraseServerId>${gpg.keyname}</passphraseServerId>
 						</configuration>
 						<executions>
 							<execution>
